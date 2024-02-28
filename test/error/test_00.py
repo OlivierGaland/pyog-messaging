@@ -13,7 +13,14 @@ from og_log import LOG
 
 from og_messaging.net.svr.tcp.server import ThreadedTCPServer,ThreadedPersistentTCPServer
 from og_messaging.net.client.tcp.client import TCPClient,PersistentTCPClient
-from og_messaging.msg.ping import PingQuery
+from og_messaging.msg.message import QueryMessage,ErrorMessage
+
+
+class ErrorQuery(QueryMessage):
+
+    def execute(self,**kwargs):
+        return ErrorMessage(255,"Requested ErrorMessage")
+
 
 LOG.start()
 
@@ -27,8 +34,12 @@ if __name__ == '__main__':
 
     try:
         while True:
-            msg = PingQuery()
-            client.send_suspended(msg)
+
+            try:
+                msg = ErrorQuery()
+                client.send_suspended(msg)
+            except Exception as e:
+                LOG.info("Exception : "+str(e))
 
             time.sleep(3)
     except KeyboardInterrupt:

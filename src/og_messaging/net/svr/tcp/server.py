@@ -5,7 +5,6 @@ from og_messaging.net.svr.tcp.handler import ThreadedTCPRequestHandler,ThreadedT
 class ThreadedTCPServer(Server, socketserver.ThreadingMixIn, socketserver.TCPServer):
 
     def __init__(self,addr,**kwargs):
-        self.callback = self._process_msg if 'callback' not in kwargs.keys() else kwargs['callback']
         super().__init__(addr,ThreadedTCPRequestHandler,**kwargs)
 
 

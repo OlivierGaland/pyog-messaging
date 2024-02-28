@@ -8,6 +8,7 @@ class Server():
  
     def __init__(self,addr,handler_cls,**kwargs):
         self.name = Server.DEFAULT_SERVER_NAME if 'name' not in kwargs.keys() else kwargs['name']
+        self.callback = self._process_msg if 'callback' not in kwargs.keys() else kwargs['callback']
         self.buffer_size = Server.DEFAULT_BUFFER_SIZE if 'buffer_size' not in kwargs.keys() else kwargs['buffer_size']
         self.server_thread = None
         super().__init__(addr,handler_cls)

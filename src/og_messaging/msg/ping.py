@@ -1,4 +1,4 @@
-from og_messaging.msg.message import QueryMessage,ReplyMessage
+from og_messaging.msg.message import QueryMessage,ReplyMessage,ErrorMessage
 
 class PingQuery(QueryMessage):
     def execute(self,**kwargs):
