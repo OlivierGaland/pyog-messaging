@@ -25,14 +25,20 @@ if __name__ == '__main__':
 
     client = UDPClient(server_addr)
 
+    LOG.info("Test case : UDP connection : suspended/nonsuspended")
+
     try:
         while True:
-            msg = PingQuery()
+            msg = PingQuery()            
+            LOG.debug("Send nonsuspended")
+            client.send_nonsuspended(msg)
+
+            LOG.debug("Send suspended")
             client.send_suspended(msg)
+
             time.sleep(3)
     except KeyboardInterrupt:
         LOG.info("Keyboard Interrupt")
-        client.disconnect()
 
     server.do_shutdown()
 

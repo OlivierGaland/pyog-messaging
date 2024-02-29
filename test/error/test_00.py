@@ -11,8 +11,8 @@ import sys,time
 sys.path.append('src')
 from og_log import LOG
 
-from og_messaging.net.svr.tcp.server import ThreadedTCPServer,ThreadedPersistentTCPServer
-from og_messaging.net.client.tcp.client import TCPClient,PersistentTCPClient
+from og_messaging.net.svr.tcp.server import ThreadedTCPServer
+from og_messaging.net.client.tcp.client import TCPClient
 from og_messaging.msg.message import QueryMessage,ErrorMessage
 
 
@@ -44,6 +44,5 @@ if __name__ == '__main__':
             time.sleep(3)
     except KeyboardInterrupt:
         LOG.info("Keyboard Interrupt")
-        client.disconnect()
 
     server.do_shutdown()

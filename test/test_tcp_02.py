@@ -25,17 +25,18 @@ if __name__ == '__main__':
     server.do_start()
     client = TCPClient(server_addr,buffer_size = 1024)
 
+    LOG.info("Test case : TCP connection : echo")
+
     i = 0
 
     try:
         while True:
             i += 1
             msg = EchoQuery(payload={'msg':'Message '+str(i)})
-            client.send_suspended(msg)
+            client.send_nonsuspended(msg)
 
             time.sleep(3)
     except KeyboardInterrupt:
         LOG.info("Keyboard Interrupt")
-        client.disconnect()
 
     server.do_shutdown()
