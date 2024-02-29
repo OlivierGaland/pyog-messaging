@@ -31,6 +31,3 @@ class Server():
 
     def _process_msg(self,msg):
         return msg.execute()          
-
-#class ThreadedUDPServer(socketserver.ThreadingMixIn, ThreadedUDPServer, socketserver.UDPServer): pass
-

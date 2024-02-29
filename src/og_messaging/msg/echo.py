@@ -1,5 +1,4 @@
-from og_log import LOG
-from og_messaging.msg.message import QueryMessage,ReplyMessage,ErrorMessage
+from og_messaging.msg.message import QueryMessage,ReplyMessage
 
 class EchoQuery(QueryMessage):
     def execute(self,**kwargs):

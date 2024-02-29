@@ -1,3 +1,5 @@
+import threading,random
+
 class Client():
     DEFAULT_CLIENT_NAME = 'Clt'
 
@@ -17,3 +19,10 @@ class Client():
 
     def _receive(self,sock):
         raise Exception("Not implemented")
+    
+    def send_suspended(self,msg):
+        raise Exception("Not implemented")
+
+    def send_nonsuspended(self,msg):
+        thread = threading.Thread(target=self.send_suspended,args=(msg,),name=self.name+":"+hex(random.getrandbits(48))[2:].ljust(12, '0'))
+        thread.start()
